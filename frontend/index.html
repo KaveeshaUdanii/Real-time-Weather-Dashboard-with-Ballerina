@@ -1,63 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Advanced Weather Dashboard</title>
-<link href="styles.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advanced Weather Dashboard</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-<div class="app-container">
-  <header>
-    <h1 id="city">Loading...</h1>
-    <div id="datetime"></div>
-    <button id="themeToggle">🌙</button>
-  </header>
 
-  <main>
-    <section class="current-weather glass-card">
-      <img id="weatherIcon" src="" alt="Weather Icon" />
-      <div class="temp" id="temp">--°C</div>
-      <div id="desc">---</div>
-      <div class="details">
-        <div id="feelsLike"></div>
-        <div id="humidity"></div>
-        <div id="wind"></div>
+  <main class="container">
+    <section class="weather-card">
+      <h1 class="title">Advanced Weather Dashboard</h1>
+
+      <form id="search-form" class="search-form" aria-label="Search weather by city">
+        <input id="search-input" type="text" placeholder="Enter city name" aria-label="City name" required />
+        <button type="submit" aria-label="Search">Search</button>
+      </form>
+
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>Loading...</span>
       </div>
-      <div class="sun-times">
-        <div>Sunrise: <span id="sunrise">--:--</span></div>
-        <div>Sunset: <span id="sunset">--:--</span></div>
+
+      <div id="error-msg" class="error hidden"></div>
+
+      <div id="weather-info" class="weather-info hidden">
+        <div class="current-weather">
+          <div>
+            <h2 id="city" class="city"></h2>
+            <p id="timezone" class="timezone"></p>
+          </div>
+          <div class="temp-section">
+            <p id="temp" class="temp"></p>
+            <img id="weather-icon" alt="Weather Icon" class="weather-icon" />
+          </div>
+          <p id="desc" class="desc"></p>
+          <p id="details" class="details"></p>
+          <p id="wind" class="wind"></p>
+          <p id="sunrise" class="sun"></p>
+          <p id="sunset" class="sun"></p>
+        </div>
+
+        <h3 class="forecast-title">5-Day Forecast</h3>
+        <div id="forecast" class="forecast"></div>
       </div>
-      <div class="countdown-timers">
-        <div>Next Sunrise in: <span id="sunriseCountdown">--:--:--</span></div>
-        <div>Next Sunset in: <span id="sunsetCountdown">--:--:--</span></div>
-      </div>
-    </section>
-
-    <section class="hourly-forecast glass-card">
-      <h2>Hourly Forecast</h2>
-      <div id="hourlyContainer" class="scroll-container"></div>
-    </section>
-
-    <section class="daily-forecast glass-card">
-      <h2>5-Day Forecast</h2>
-      <div id="dailyContainer" class="forecast-grid"></div>
-    </section>
-
-    <section class="extra-info glass-card">
-      <h2>Air Quality Index (AQI)</h2>
-      <div id="aqi" class="aqi-level">--</div>
-      <div id="aqiAdvice">Loading...</div>
-
-      <h2>UV Index</h2>
-      <div class="uv-bar-container">
-        <div id="uvBar" class="uv-bar"></div>
-      </div>
-      <div id="uvLevel">--</div>
     </section>
   </main>
-</div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
