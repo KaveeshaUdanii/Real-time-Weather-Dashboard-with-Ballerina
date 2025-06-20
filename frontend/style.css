@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+:root {
+  --color-bg-light: #e0f7fa;
+  --color-bg-dark: #1a1a2e;
+  --color-glass-light: rgba(255 255 255 / 0.15);
+  --color-glass-dark: rgba(30 30 50 / 0.5);
+  --color-accent: #00bcd4;
+  --color-text-light: #222;
+  --color-text-dark: #eee;
+  --aqi-good: #4caf50;
+  --aqi-moderate: #ffeb3b;
+  --aqi-unhealthy: #f44336;
+  --uv-low: #4caf50;
+  --uv-moderate: #ffeb3b;
+  --uv-high: #f44336;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+.app-container {
+  max-width: 960px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+#datetime {
+  font-weight: 300;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+#themeToggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+#themeToggle:hover {
+  transform: rotate(20deg);
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media(min-width: 720px) {
+  main {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.glass-card {
+  background: var(--color-glass-light);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transition: background 0.5s ease;
+}
+
+body.dark .glass-card {
+  background: var(--color-glass-dark);
+}
+
+.current-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.current-weather img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.5s ease;
+}
+
+.temp {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 0.2rem 0;
+}
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 0.5rem;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.sun-times, .countdown-timers {
+  margin-top: 0.7rem;
+  font-weight: 300;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.hourly-forecast h2,
+.daily-forecast h2,
+.extra-info h2 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.2rem;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.hourly-forecast .hour-card {
+  min-width: 80px;
+  background: var(--color-glass-light);
+  border-radius: 10px;
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 300;
+  transition: background 0.3s ease;
+  cursor: default;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body.dark .hourly-forecast .hour-card {
+  background: var(--color-glass-dark);
+}
+
+.hourly-forecast .hour-card:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.05);
+}
+
+.hourly-forecast .hour-card img {
+  width: 40px;
+  height: 40px;
+  margin: 0.3rem 0;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+  gap: 1rem;
+}
+
+.daily-forecast .day-card {
+  background: var(--color-glass-light);
+  border-radius: 12px;
+  padding: 0.8rem;
+  text-align: center;
+  font-weight: 300;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  transition: background 0.3s ease;
+}
+
+body.dark .daily-forecast .day-card {
+  background: var(--color-glass-dark);
+}
+
+.daily-forecast .day-card:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.05);
+}
+
+.day-card img {
+  width: 50px;
+  height: 50px;
+  margin: 0.3rem 0;
+}
+
+.aqi-level {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0.3rem 0;
+  padding: 0.4rem;
+  border-radius: 12px;
+  user-select: none;
+}
+
+.uv-bar-container {
+  background: #ddd;
+  border-radius: 10px;
+  height: 15px;
+  margin: 0.3rem 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.uv-bar {
+  height: 100%;
+  border-radius: 10px;
+  width: 0;
+  transition: width 1s ease;
+}
+
+#uvLevel {
+  font-weight: 600;
+  text-align: center;
+}
+
